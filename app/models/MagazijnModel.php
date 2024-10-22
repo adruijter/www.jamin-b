@@ -12,4 +12,13 @@ class MagazijnModel
          */
         $this->db = new Database();
     }
+
+    public function readMagazijnProduct()
+    {
+        $sql = 'CALL spReadMagazijnProduct()';
+
+        $this->db->query($sql);
+
+        return $this->db->resultSet();
+    }
 }

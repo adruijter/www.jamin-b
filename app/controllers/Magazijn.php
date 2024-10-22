@@ -11,8 +11,13 @@ class Magazijn extends BaseController
 
     public function index()
     {
+        $magazijnProducts = $this->magazijnModel->readMagazijnProduct();
+
+        // var_dump($magazijnProducts);
+
         $data = [
-            'title' => 'Overzicht Magazijn Jamin'
+            'title' => 'Overzicht Magazijn Jamin',
+            'magazijnProducts' => $magazijnProducts 
         ];
 
         $this->view('magazijn/index', $data);

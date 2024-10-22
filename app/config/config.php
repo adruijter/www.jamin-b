@@ -3,7 +3,7 @@
  * De database verbindingsgegevens
  */
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'mvc-framework-io-sd-2309b-startertmp');
+define('DB_NAME', 'jamin_b');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
