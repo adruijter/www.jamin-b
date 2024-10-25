@@ -168,6 +168,125 @@ VALUES
     (13, 5, 20, 1, NULL, SYSDATE(6), SYSDATE(6));
 
 
+-- Step 05:
+-- Goal: Create a new table Leverancier
+-- ********************************************************
+-- Version:       Date:       Author:           Description
+-- ********       ****        *******           ***********
+-- 01             25-10-2024  Arjan de Ruijter  New table
+-- ********************************************************
+
+DROP TABLE IF EXISTS Leverancier;
+
+CREATE TABLE IF NOT EXISTS Leverancier
+(
+     Id                 SMALLINT             UNSIGNED        NOT NULL      AUTO_INCREMENT
+    ,Naam               VARCHAR(60)                          NOT NULL
+    ,Contactpersoon     VARCHAR(60)                          NOT NULL
+    ,Leveranciernummer  VARCHAR(11)                          NOT NULL
+    ,Mobiel             VARCHAR(11)                          NOT NULL
+    ,IsActief           BIT                                  NOT NULL      DEFAULT 1
+    ,Opmerkingen        VARCHAR(255)                             NULL      DEFAULT NULL
+    ,DatumAangemaakt Datetime(6)                             NOT NULL
+    ,DatumGewijzigd  Datetime(6)                             NOT NULL
+    ,CONSTRAINT      PK_Levrancier_Id        PRIMARY KEY CLUSTERED (Id)
+) ENGINE=InnoDB   AUTO_INCREMENT=1;
+
+
+-- Step: 06
+-- Goal: Fill table Levrancier with data
+-- ***********************************************************
+-- Version:       Date:       Author:           Description
+-- ********       ****        *******           ***********
+-- 01             25-10-2024  Arjan de Ruijter  Insert Records
+-- ***********************************************************
+
+INSERT INTO Leverancier
+(
+     Naam
+    ,Contactpersoon
+    ,Leveranciernummer
+    ,Mobiel
+    ,IsActief
+    ,Opmerkingen
+    ,DatumAangemaakt
+    ,DatumGewijzigd
+)
+VALUES
+    ('Venco', 'Bert van Linge', 'L1029384719', '06-28493827', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    ('Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    ('Haribo', 'Sven Stalman', 'L1029324748', '06-24383291', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    ('Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    ('De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234', 1, NULL, SYSDATE(6), SYSDATE(6));
+
+
+
+-- Step 07:
+-- Goal: Create a new table ProductPerLeverancier
+-- ********************************************************
+-- Version:       Date:       Author:           Description
+-- ********       ****        *******           ***********
+-- 01             25-10-2024  Arjan de Ruijter  New table
+-- ********************************************************
+
+CREATE TABLE IF NOT EXISTS ProductPerLeverancier
+(
+     Id                             MEDIUMINT       UNSIGNED          NOT NULL      AUTO_INCREMENT
+    ,LeverancierId                  SMALLINT        UNSIGNED          NOT NULL
+    ,ProductId                      MEDIUMINT       UNSIGNED          NOT NULL
+    ,DatumLevering                  DATE                              NOT NULL
+    ,Aantal                         INT             UNSIGNED          NOT NULL
+    ,DatumEerstVolgendeLevering     DATE                              NOT NULL
+    ,IsActief                       BIT                               NOT NULL      DEFAULT 1
+    ,Opmerkingen                    VARCHAR(255)                          NULL      DEFAULT NULL
+    ,DatumAangemaakt                Datetime(6)                       NOT NULL
+    ,DatumGewijzigd                 Datetime(6)                       NOT NULL
+    ,CONSTRAINT           PK_ProductPerLeverancier_Id  PRIMARY KEY CLUSTERED (Id)
+    ,CONSTRAINT           FK_ProductPerLeverancier_LeverancierId_Leverancier_Id  FOREIGN KEY (LeverancierId) REFERENCES Leverancier (Id)
+) ENGINE=InnoDB   AUTO_INCREMENT=1;
+
+
+
+-- Step: 08
+-- Goal: Fill table ProductPerLeverancier with data
+-- ***********************************************************
+-- Version:       Date:       Author:           Description
+-- ********       ****        ****************  ***********
+-- 01             25-10-2024  Arjan de Ruijter  Insert Records
+-- ***********************************************************
+
+INSERT INTO ProductPerLeverancier
+(
+     LeverancierId
+    ,ProductID
+    ,DatumLevering
+    ,Aantal
+    ,DatumEerstVolgendeLevering
+    ,IsActief
+    ,Opmerkingen
+    ,DatumAangemaakt
+    ,DatumGewijzigd
+)
+VALUES
+(1, 1, '2024-10-09', 23, '2024-10-16', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(1, 1, '2024-10-18', 21, '2024-10-25', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(1, 2, '2024-10-09', 12, '2024-10-16', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(1, 3, '2024-10-10', 11, '2024-10-17', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(2, 4, '2024-10-14', 16, '2024-10-21', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(2, 4, '2024-10-21', 23, '2024-10-28', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(2, 5, '2024-10-14', 45, '2024-10-21', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(2, 6, '2024-10-14', 30, '2024-10-21', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(3, 7, '2024-10-12', 12, '2024-10-19', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(3, 7, '2024-10-19', 23, '2024-10-26', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(3, 8, '2024-10-10', 12, '2024-10-17', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(3, 9, '2024-10-11', 1, '2024-10-18', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(4, 10, '2024-10-16', 24, '2024-10-30', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(5, 11, '2024-10-10', 47, '2024-10-17', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(5, 11, '2024-10-19', 60, '2024-10-26', 1, NULL, SYSDATE(6), SYSDATE(6)),
+(5, 12, '2024-10-11', 45, NULL, 1, NULL, SYSDATE(6), SYSDATE(6)),
+(5, 13, '2024-10-12', 23, NULL, 1, NULL, SYSDATE(6), SYSDATE(6));
+
+
 
 COMMIT;
 
