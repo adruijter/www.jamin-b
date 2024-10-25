@@ -167,5 +167,7 @@ VALUES
     (12, 1, 467, 1, NULL, SYSDATE(6), SYSDATE(6)),
     (13, 5, 20, 1, NULL, SYSDATE(6), SYSDATE(6));
 
+
+
 COMMIT;
 
