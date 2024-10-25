@@ -3,6 +3,17 @@
 <!-- Voor het centreren van de container gebruiken we het boodstrap grid -->
 <div class="container">
 
+    <div class="row mt-3 text-center" style="display:<?= $data['messageVisibility']; ?>">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="alert alert-<?= $data['messageColor']; ?>" role="alert">
+                <?= $data['message']; ?>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">

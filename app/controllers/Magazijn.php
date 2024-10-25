@@ -13,6 +13,9 @@ class Magazijn extends BaseController
     {
         $data = [
             'title' => 'Overzicht Magazijn Jamin',
+            'message' => NULL,
+            'messageColor' => NULL,
+            'messageVisibility' => 'none',
             'dataRows' => NULL
         ];
 
@@ -20,15 +23,18 @@ class Magazijn extends BaseController
 
         if (is_null($result)) {
             // Fout afhandelen
+            $data['message'] = "Er is een fout opgetreden in de database";
+            $data['messageColor'] = "danger";
+            $data['messageVisibility'] = "flex";
+            $data['dataRows'] = NULL;
+
+            header('Refresh:3; url=' . URLROOT . '/Homepages/index');
         } else {
             $data['dataRows'] = $result;
         }
 
         $this->view('magazijn/index', $data);
     }
-
-
-
 }
 
 
