@@ -29,4 +29,25 @@ class MagazijnModel
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());            
         }
     }
+
+    public function getProductPerLeverancierById($ProductId)
+    {
+        
+        try {
+            $sql = "CALL spReadProductPerLeverancierById(:productId)";
+
+            $this->db->query($sql);
+
+            $this->db->bind(':productId', $ProductId, PDO::PARAM_INT);
+
+            return $this->db->resultSet();
+
+        } catch (Exception $e) {
+            echo "Fout";exit();
+            /**
+             * Log de error in de functie logger()
+             */
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());   
+        }
+    }
 }
