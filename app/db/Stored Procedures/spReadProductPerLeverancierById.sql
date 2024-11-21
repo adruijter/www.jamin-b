@@ -22,24 +22,30 @@ CREATE PROCEDURE spReadProductPerLeverancierById
 )
 BEGIN
 
-   SELECT    PPL.DatumLevering
-            ,PPL.DatumEerstVolgendeLevering
-            ,PPL.Aantal
-            ,PROD.Naam                          AS ProductNaam
-            ,LEVE.Naam                          AS LeverancierNaam
-            ,LEVE.Contactpersoon
-            ,LEVE.Leveranciernummer
-            ,LEVE.Mobiel
+   SELECT        PPL.DatumLevering
+                ,PPL.DatumEerstVolgendeLevering
+                ,PPL.Aantal
+                ,PROD.Naam                          AS ProductNaam
+                ,LEVE.Naam                          AS LeverancierNaam
+                ,LEVE.Contactpersoon
+                ,LEVE.Leveranciernummer
+                ,LEVE.Mobiel
+                ,MAGA.AantalAanwezig
 
-   FROM     ProductPerLeverancier AS PPL
+   FROM         ProductPerLeverancier AS PPL
 
-   INNER JOIN Product AS PROD
-   ON         PPL.ProductId = PROD.Id
+   INNER JOIN   Product AS PROD
+           ON   PPL.ProductId = PROD.Id
 
-   INNER JOIN Leverancier AS LEVE
-   ON         PPL.LeverancierId = Leve.Id
+   INNER JOIN   Leverancier AS LEVE
+           ON   PPL.LeverancierId = Leve.Id
 
-   WHERE      PPL.ProductId = ProductId;
+   INNER JOIN   Magazijn AS MAGA
+           ON   MAGA.ProductId = PROD.Id
+
+   WHERE      PROD.Id = ProductId
+
+   ORDER BY  PPL.Datumlevering ASC;
 
 
 END //

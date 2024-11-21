@@ -51,19 +51,19 @@
                                 <td><?= $product->AantalAanwezig ?></td>
                                 <td class='text-center'>
                                     <a href='<?= URLROOT . "/Magazijn/Allergeninfo/$product->ProductId" ?>'>
-                                        <i class='bi bi-x-lg redcross'></i>
+                                        <i class="bi bi-x-circle redcross"></i>
                                     </a>
                                 </td>
                                 <td class='text-center'>
                                     <a href='<?= URLROOT . "/Magazijn/readProductPerLeverancierById/$product->ProductId" ?>'>
-                                        <i class='bi bi-question-lg darkbluequestionmark'></i>
+                                        <i class="bi bi-question-circle darkbluequestionmark"></i></i>
                                     </a>
                                 </td>            
                                 </tr>
                     <?php } } ?>
                 </tbody>
             </table>
-            <a href="<?= URLROOT; ?>/homepages/index">Homepage</a>
+            <a href="<?= URLROOT; ?>/homepages/index"><h3><i class="bi bi-arrow-left-square-fill"></i></h3></a>
         </div>
         <div class="col-2"></div>
     </div>

@@ -286,7 +286,102 @@ VALUES
 (5, 12, '2024-10-11', 45, NULL, 1, NULL, SYSDATE(6), SYSDATE(6)),
 (5, 13, '2024-10-12', 23, NULL, 1, NULL, SYSDATE(6), SYSDATE(6));
 
+-- Step: 09
+-- Goal: Maak een tabel Allergeen
+-- ***********************************************************
+-- Versie:        Datum:      Auteur:          Omschrijving
+-- *******        ******      *******          ***********
+-- 01             21-11-2024  Arjan de Ruijter  Maak een tabel
+-- ***********************************************************
+
+CREATE TABLE Allergeen
+(
+     Id              TINYINT         UNSIGNED        NOT NULL    AUTO_INCREMENT
+    ,Naam            VARCHAR(50)                     NOT NULL
+    ,Omschrijving    VARCHAR(255)                    NOT NULL
+    ,IsActief        BIT                             NOT NULL    DEFAULT 1
+    ,Opmerkingen     VARCHAR(255)                    NULL      DEFAULT NULL
+    ,DatumAangemaakt Datetime(6)                     NOT NULL
+    ,DatumGewijzigd  Datetime(6)                     NOT NULL
+    ,CONSTRAINT       PK_Allergeen_Id                 PRIMARY KEY CLUSTERED(Id)
+) ENGINE=InnoDB;
+
+-- Step: 10
+-- Goal: Vul de tabel Allergeen
+-- ***********************************************************
+-- Versie:        Datum:      Auteur:          Omschrijving
+-- *******        ******      *******          ***********
+-- 01             21-11-2024  Arjan de Ruijter Vul een tabel
+-- ***********************************************************
+
+INSERT INTO Allergeen
+(
+     Naam
+    ,Omschrijving
+    ,IsActief
+    ,Opmerkingen
+    ,DatumAangemaakt
+    ,DatumGewijzigd
+)
+VALUES
+ ('Gluten', 'Dit product bevat gluten', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Gelatine', 'Dit product bevat gelatine', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('AZO-Kleurstof', 'Dit product bevat AZO-kleurstoffen', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lactose', 'Dit product bevat lactose', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Soja', 'Dit product bevat soja', 1, NULL, SYSDATE(6), SYSDATE(6));
+
+-- Step: 11
+-- Goal: Maak de tabel ProductPerAllergeen
+-- ***********************************************************
+-- Versie:        Datum:      Auteur:          Omschrijving
+-- *******        ******      *******          ***********
+-- 01             21-11-2024  Arjan de Ruijter Maak de tabel
+-- ***********************************************************
+
+CREATE TABLE ProductPerAllergeen
+(
+     Id              SMALLINT            UNSIGNED                       NOT NULL        AUTO_INCREMENT
+    ,ProductId       MEDIUMINT           UNSIGNED                       NOT NULL
+    ,AllergeenId     TINYINT             UNSIGNED                       NOT NULL 
+    ,IsActief        BIT                                                NOT NULL        DEFAULT 1
+    ,Opmerkingen     VARCHAR(255)                                           NULL        DEFAULT NULL
+    ,DatumAangemaakt Datetime(6)                                        NOT NULL
+    ,DatumGewijzigd  Datetime(6)                                        NOT NULL
+    ,CONSTRAINT      PK_ProductPerAllergeen_Id                          PRIMARY KEY CLUSTERED (Id) 
+    ,CONSTRAINT      FK_ProductPerAllergeen_ProductId_Product_Id        FOREIGN KEY (ProductId)     REFERENCES Product   (Id)
+    ,CONSTRAINT      FK_ProductPerAllergeen_AllergeenId_Allergeen_Id    FOREIGN KEY (AllergeenId)   REFERENCES Allergeen (Id)
+) ENGINE=InnoDB;
 
 
+-- Step: 12
+-- Goal: Vul de tabel ProductPerAllergeen
+-- ***********************************************************
+-- Versie:        Datum:      Auteur:          Omschrijving
+-- *******        ******      *******          ***********
+-- 01             21-11-2024  Arjan de Ruijter Vul de tabel
+-- ***********************************************************
+
+INSERT INTO ProductPerAllergeen
+(
+     ProductId
+    ,AllergeenId
+    ,IsActief
+    ,Opmerkingen
+    ,DatumAangemaakt
+    ,DatumGewijzigd
+)
+VALUES
+ (1, 2, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(1, 1, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(1, 3, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(3, 4, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(6, 5, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(9, 2, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(9, 5, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(10, 2, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(12, 4, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(13, 1, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(13, 4, 1, NULL, SYSDATE(6), SYSDATE(6))
+,(13, 5, 1, NULL, SYSDATE(6), SYSDATE(6));
 COMMIT;
 

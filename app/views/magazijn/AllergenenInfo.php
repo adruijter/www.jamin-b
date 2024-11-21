@@ -25,26 +25,25 @@
 
     <div class="row mt-3">
         <div class="col-2"></div>
+        <div class="col-8">
+            <?php var_dump($data['dataRows']); ?>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2"></div>
         <div class="col-4">
             <table class="table table-hover">
                 <tbody>
                     <tr>
-                        <th>Naam Leverancier:</th>
-                        <td><?= $data['dataRows'][0]->LeverancierNaam; ?></td>
+                        <th>Naam:</th>
+                        <td><?= $data['dataRows'][0]->ProductNaam; ?></td>
                     </tr>
                     <tr>
-                        <th>Contactpersoon Leverancier:</th>
-                        <td><?= $data['dataRows'][0]->Contactpersoon; ?></td>
+                        <th>Barcode:</th>
+                        <td><?= $data['dataRows'][0]->Barcode; ?></td>
                     </tr>
-                    <tr>
-                        <th>LeverancierNummer:</th>
-                        <td><?= $data['dataRows'][0]->Leveranciernummer; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Mobiel:</th>
-                        <td><?= $data['dataRows'][0]->Mobiel; ?></td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>
@@ -56,19 +55,15 @@
         <div class="col-8">
             <table class="table table-hover">
                     <thead>
-                        <th>Naam Product</th>
-                        <th>Datum Laatste Levering</th>
-                        <th>Aantal</th>
-                        <th>Eerstvolgende levering</th>
+                        <th>Naam</th>
+                        <th>Omschrijving</th>
                     </thead>
                     <tbody>
-                        <?php if ($data['dataRows'][0]->AantalAanwezig == 0) { 
+                        <?php if ($data['dataRows'][0]->ProductNaam == 0) { 
                             header('Refresh: 4; ' . URLROOT . '/magazijn/index');?>
                             <tr>
                                 <td colspan="4" class="text-center">
-                                    Er is van dit product op dit moment geen voorraad aanwezig<br>
-                                    de verwachte eerstvolgende levering is: 
-                                    <?= date_format(date_create($data['dataRows'][array_key_last($data['dataRows'])]->DatumEerstVolgendeLevering), "d-m-Y"); ?>
+                                In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken
                                 </td>
                             </tr>
                         
@@ -76,10 +71,8 @@
 
                          foreach( $data['dataRows'] as $info) { ?>
                             <tr>
-                                <td><?= $info->ProductNaam ?></td>
-                                <td><?= $info->DatumLevering ?></td>
-                                <td><?= $info->Aantal ?></td>
-                                <td><?= $info->DatumEerstVolgendeLevering ?></td>
+                                <td><?= $info->AllergeenNaam ?></td>
+                                <td><?= $info->Omschrijving ?></td>
                             </tr>
                         <?php }
                         } ?>

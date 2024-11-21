@@ -39,7 +39,7 @@ class Magazijn extends BaseController
     public function readProductPerLeverancierById($productId)
     {
         $data = [
-            'title' => 'LeveringsInformatie',
+            'title' => 'Levering Informatie',
             'message' => NULL,
             'messageColor' => NULL,
             'messageVisibility' => 'none',
@@ -61,6 +61,41 @@ class Magazijn extends BaseController
         }
 
         $this->view('magazijn/readProductPerLeverancierById', $data);
+    }
+
+    public function Allergeninfo($productId)
+    {
+        $data = [
+            'title' => 'Overzicht Allergenen',
+            'message' => NULL,
+            'messageColor' => NULL,
+            'messageVisibility' => 'none',
+            'dataRows' => NULL
+        ];
+
+        $result = $this->magazijnModel->getAllergeenPerProductById($productId);
+
+        if (is_null($result)) {
+            // Fout afhandelen
+            $data['message'] = "Er is een fout opgetreden in de database";
+            $data['messageColor'] = "danger";
+            $data['messageVisibility'] = "flex";
+            $data['dataRows'] = NULL;
+
+            header('Refresh:3; url=' . URLROOT . '/Magazijn/index');
+        } else if(empty($result)) {
+            echo "Hoi";
+
+            $result = $this->magazijnModel->getProductById($productId);
+
+            var_dump($result);
+
+            $data['dataRows'] = $result;
+        } else {
+            $data['dataRows'] = $result;
+        }
+
+        $this->view('magazijn/AllergenenInfo', $data);
     }
 }
 

@@ -50,4 +50,26 @@ class MagazijnModel
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());   
         }
     }
+
+    public function getAllergeenPerProductById($productId)
+    {
+        $sql = "CALL spReadAllergeenPerProductById(:productId)";
+
+        $this->db->query($sql);
+
+        $this->db->bind(':productId', $productId, PDO::PARAM_INT);
+
+        return $this->db->resultSet();
+    }
+
+    public function getProductById($productId)
+    {
+        $sql = "CALL spReadProductById(:productId)";
+
+        $this->db->query($sql);
+
+        $this->db->bind(':productId', $productId, PDO::PARAM_INT);
+
+        return $this->db->single();
+    }
 }
