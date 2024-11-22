@@ -59,7 +59,7 @@
                         <th>Omschrijving</th>
                     </thead>
                     <tbody>
-                        <?php if ($data['dataRows'][0]->ProductNaam == 0) { 
+                        <?php if (is_null($data['dataRows'][0]->AllergeenNaam)) { 
                             header('Refresh: 4; ' . URLROOT . '/magazijn/index');?>
                             <tr>
                                 <td colspan="4" class="text-center">

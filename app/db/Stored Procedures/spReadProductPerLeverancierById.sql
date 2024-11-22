@@ -22,8 +22,8 @@ CREATE PROCEDURE spReadProductPerLeverancierById
 )
 BEGIN
 
-   SELECT        PPL.DatumLevering
-                ,PPL.DatumEerstVolgendeLevering
+   SELECT        DATE_FORMAT(PPL.DatumLevering, "%d-%m-%Y") AS  DatumLevering
+                ,DATE_FORMAT(PPL.DatumEerstVolgendeLevering, "%d-%m-%Y") AS     DatumEerstVolgendeLevering
                 ,PPL.Aantal
                 ,PROD.Naam                          AS ProductNaam
                 ,LEVE.Naam                          AS LeverancierNaam
