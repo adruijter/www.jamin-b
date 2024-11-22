@@ -25,14 +25,6 @@
 
     <div class="row mt-3">
         <div class="col-2"></div>
-        <div class="col-8">
-            <?php var_dump($data['dataRows']); ?>
-        </div>
-        <div class="col-2"></div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-2"></div>
         <div class="col-4">
             <table class="table table-hover">
                 <tbody>
@@ -62,7 +54,7 @@
                         <?php if (is_null($data['dataRows'][0]->AllergeenNaam)) { 
                             header('Refresh: 4; ' . URLROOT . '/magazijn/index');?>
                             <tr>
-                                <td colspan="4" class="text-center">
+                                <td colspan="4" class="text-center text-danger">
                                 In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken
                                 </td>
                             </tr>

@@ -9,7 +9,7 @@
 ************************************************/
 
 -- Noem de database voor de stored procedure
-use `mvc-framework-io-sd-2309b-startertmp`;
+use `jamin_b`;
 
 -- Verwijder de bestaande stored procedure
 DROP PROCEDURE IF EXISTS spReadCountryById;
