@@ -9,7 +9,7 @@ class Magazijn extends BaseController
         $this->magazijnModel = $this->model('MagazijnModel');
     }
 
-    public function index()
+    public function index($limit = 100, $offset = 0)
     {
         $data = [
             'title' => 'Overzicht Magazijn Jamin',
@@ -19,7 +19,7 @@ class Magazijn extends BaseController
             'dataRows' => NULL
         ];
 
-        $result = $this->magazijnModel->getAllMagazijnProducts();
+        $result = $this->magazijnModel->getAllMagazijnProducts($limit,$offset);
 
         if (is_null($result)) {
             // Fout afhandelen

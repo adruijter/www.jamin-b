@@ -2,7 +2,7 @@
 
 <!-- Voor het centreren van de container gebruiken we het boodstrap grid -->
 <div class="container">
-
+    <!-- Meldingen -->
     <div class="row mt-3 text-center" style="display:<?= $data['messageVisibility']; ?>">
         <div class="col-2"></div>
         <div class="col-8">
@@ -13,7 +13,7 @@
         <div class="col-2"></div>
     </div>
 
-
+    <!-- Title -->
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">
@@ -22,10 +22,10 @@
         <div class="col-2"></div>
     </div>
 
+    <!-- Table -->
     <div class="row mt-3">
         <div class="col-2"></div>
-        <div class="col-8">
-            
+        <div class="col-8">            
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -63,12 +63,22 @@
                     <?php } } ?>
                 </tbody>
             </table>
-            <a href="<?= URLROOT; ?>/homepages/index"><h3><i class="bi bi-arrow-left-square-fill"></i></h3></a>
         </div>
         <div class="col-2"></div>
     </div>
 
+    <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-8 position-relative">
+            <a class="position-absolute start-3" href="<?= URLROOT; ?>/homepages/index"><h3><i class="bi bi-arrow-left-square-fill"></i></h3></a>           
+            <a class="position-absolute end-1" href="<?= URLROOT; ?>/homepages/index"><h3><i class="bi bi-arrow-left-square-fill"></i></h3></a>           
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+
 </div>
+
 
 
 
