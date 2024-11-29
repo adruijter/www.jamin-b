@@ -16,7 +16,11 @@ DROP PROCEDURE IF EXISTS spReadMagazijnProduct;
 
 DELIMITER //
 
-CREATE PROCEDURE spReadMagazijnProduct()
+CREATE PROCEDURE spReadMagazijnProduct
+(
+     IN test1   TINYINT     UNSIGNED
+    ,IN test2  SMALLINT    UNSIGNED
+)
 BEGIN
 
     SELECT       MAGA.Id                    AS      MagazijnId
@@ -32,7 +36,9 @@ BEGIN
     INNER JOIN Product AS PROD
             ON PROD.Id = MAGA.ProductId
 
-    ORDER BY PROD.Barcode ASC;
+    ORDER BY PROD.Barcode ASC
+    
+    LIMIT test1 OFFSET test2;
 
 
 END //
