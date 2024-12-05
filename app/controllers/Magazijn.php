@@ -34,7 +34,7 @@ class Magazijn extends BaseController
             header('Refresh:3; url=' . URLROOT . '/Homepages/index');
         } else {
             $data['dataRows'] = $result;
-            $data['pagination'] = new Pagination($result[0]->TotalRows, $limit, $offset);
+            $data['pagination'] = new Pagination($result[0]->TotalRows, $limit, $offset, __CLASS__, __FUNCTION__);
         }
 
         $this->view('magazijn/index', $data);
