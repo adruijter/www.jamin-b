@@ -63,7 +63,18 @@
                     <?php } } ?>
                 </tbody>
             </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+   
+    <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-2">
             <a href="<?= URLROOT; ?>/homepages/index"><h3><i class="bi bi-arrow-left-square-fill"></i></h3></a>
+        </div>
+        <div class="col-6">
+            <?= $data['pagination']->paginationView(); ?>
         </div>
         <div class="col-2"></div>
     </div>

@@ -30,6 +30,7 @@ BEGIN
                 ,PROD.Id                    AS      ProductId
                 ,PROD.Naam
                 ,PROD.Barcode
+                ,COUNT(*) OVER()            AS      TotalRows
 
     FROM        Magazijn AS MAGA
 

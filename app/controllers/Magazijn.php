@@ -9,17 +9,20 @@ class Magazijn extends BaseController
         $this->magazijnModel = $this->model('MagazijnModel');
     }
 
-    public function index($limit = 5, $offset = 10)
+    public function index($limit = 5, $offset = 0)
     {
         $data = [
             'title' => 'Overzicht Magazijn Jamin',
             'message' => NULL,
             'messageColor' => NULL,
             'messageVisibility' => 'none',
-            'dataRows' => NULL
+            'dataRows' => NULL,
+            'pagination' => NULL
         ];
 
         $result = $this->magazijnModel->getAllMagazijnProducts($limit, $offset);
+
+
 
         if (is_null($result)) {
             // Fout afhandelen
@@ -31,6 +34,7 @@ class Magazijn extends BaseController
             header('Refresh:3; url=' . URLROOT . '/Homepages/index');
         } else {
             $data['dataRows'] = $result;
+            $data['pagination'] = new Pagination($result[0]->TotalRows, $limit, $offset);
         }
 
         $this->view('magazijn/index', $data);
