@@ -9,7 +9,7 @@ class Magazijn extends BaseController
         $this->magazijnModel = $this->model('MagazijnModel');
     }
 
-    public function index($limit = 5, $offset = 0)
+    public function index($limit = LIMIT, $offset = 0)
     {
         $data = [
             'title' => 'Overzicht Magazijn Jamin',

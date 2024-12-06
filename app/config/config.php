@@ -19,3 +19,7 @@ define('URLROOT', 'http://www.jamin-b.nl');
  */
 define('APPROOT', dirname(dirname(__FILE__)));
 
+/**
+ * Geef aan hoeveel items er per pagina getoond moeten worden
+ */
+define('LIMIT', 3);
