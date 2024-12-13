@@ -9,7 +9,8 @@
 
             <!-- <a href="<?= URLROOT; ?>/instructeurs/index">Instructeurs</a> | -->
             <!-- <a href="<?= URLROOT; ?>/countries/index">Landen van de Wereld</a> | -->
-            <a href="<?= URLROOT; ?>/magazijn/index">Overzicht magazijn Jamin</a> |
+            <a href="<?= URLROOT; ?>/magazijn/index">Overzicht magazijn Jamin (opdr1)</a> |
+            <a href="<?= URLROOT; ?>/leverancier/index">Overzicht Leveranciers (opdr2)</a>
 
         </div>
         <div class="col-2"></div>
