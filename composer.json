@@ -1,0 +1,19 @@
+{
+    "minimum-stability":"dev",
+    "require-dev": {
+        "phpunit/phpunit": "dev-main",
+        "gipetto/cowsay": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "app/controllers",
+            "app/libraries",
+            "app/models",
+            "app/helpers"
+        ]
+    },
+    "files": [
+        "app/helpers/functions.php",
+        "app/config/config.php"
+    ]
+}
